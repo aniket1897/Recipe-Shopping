@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingEditComponent implements OnInit {
 
+  @Output() onIgredientsSubmit = new EventEmitter<{name:string,amount:string}>();
+  
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addIngredients(nameInput:HTMLInputElement,amountInput:HTMLInputElement){
+      this.onIgredientsSubmit.emit({
+        name:nameInput.value,
+        amount:amountInput.value
+      });
   }
 
 }
